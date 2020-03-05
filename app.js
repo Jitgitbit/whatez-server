@@ -3,6 +3,8 @@ const express = require(`express`);
 const fs = require(`fs`);
 const multer = require(`multer`);
 const {TesseractWorker} = require(`tesseract.js`);
+// const Regex = require("regex");
+// const regex = new Regex(/[E]/gi);
 
 const app = express();
 
@@ -21,13 +23,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}).single(`avatar`);
 
-// app.set("view", "ejs");
 app.set("views", "./views");
 app.set('view engine', 'ejs');
 
-// app.get(`/`, (req, res)=>{
-//   res.render(`index`);
-// });
 
 //ROUTES:
 app.get("/", (req, res) => res.render("index"));
@@ -48,6 +46,18 @@ app.post("/upload", (req,res) => {
         console.log("WHAT IS RESULT??", result.text)
         // console.log("WHAT IS RESULT??", result.words)
         res.redirect('/download')
+
+        // const regex = new Regex(result.text);
+        // console.log(`first extraction attempt:`,regex);
+        console.log("some string");
+
+        const paragraph = result.text;
+        // const regex = /[A-Z]/g;
+        const found = paragraph.match(/[E]\d{3}/gi);
+        console.log(`first extraction attempt:`,found);
+        // console.log(regex.test(result.text));
+        const noDuplicates = [...new Set(found)];
+        console.log(`no duplicates:`,noDuplicates);
       })
       .finally(()=> worker.terminate());
     })
