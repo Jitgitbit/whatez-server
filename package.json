@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "multer": "^1.4.2",
+    "regex": "^0.1.1",
     "tesseract.js": "^2.0.0-alpha.13"
   },
   "devDependencies": {
