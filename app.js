@@ -23,13 +23,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}).single(`avatar`);
 
-// app.set("view", "ejs");
 app.set("views", "./views");
 app.set('view engine', 'ejs');
 
-// app.get(`/`, (req, res)=>{
-//   res.render(`index`);
-// });
 
 //ROUTES:
 app.get("/", (req, res) => res.render("index"));
