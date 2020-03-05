@@ -3,8 +3,6 @@ const express = require(`express`);
 const fs = require(`fs`);
 const multer = require(`multer`);
 const {TesseractWorker} = require(`tesseract.js`);
-// const Regex = require("regex");
-// const regex = new Regex(/[E]/gi);
 
 const app = express();
 
@@ -42,20 +40,15 @@ app.post("/upload", (req,res) => {
         console.log(progress);
       })
       .then(result => {
-        // console.log("WHAT IS RESULT??", Object.keys(result))  // VERY IMPORTANT: ESSENTIAL TO FIND THE OBJECT PROPERTY YOU NEED !!
         console.log("WHAT IS RESULT??", result.text)
-        // console.log("WHAT IS RESULT??", result.words)
         res.redirect('/download')
 
-        // const regex = new Regex(result.text);
-        // console.log(`first extraction attempt:`,regex);
         console.log("some string");
 
         const paragraph = result.text;
-        // const regex = /[A-Z]/g;
         const found = paragraph.match(/[E]\d{3}/gi);
         console.log(`first extraction attempt:`,found);
-        // console.log(regex.test(result.text));
+
         const noDuplicates = [...new Set(found)];
         console.log(`no duplicates:`,noDuplicates);
       })
