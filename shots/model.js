@@ -9,7 +9,7 @@ const Shot = sequelize.define("shot", {
     allowNull: false
   },
   arrayE: {
-    type: Sequelize.ARRAY
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 });
 
