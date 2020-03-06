@@ -5,7 +5,7 @@ const auth = require("./auth/middleware");
 
 const userRouter = require("./users/router");
 const authRouter = require("./auth/router");
-// const eventRouter = require("./events/router");
+const shotRouter = require("./shots/router");
 
 
 
@@ -23,12 +23,7 @@ app.get("/ping", (request, response) => {
 
 app.use(userRouter);
 app.use(authRouter);
-// app.use(eventRouter);
-// app.use(ticketRouter);
-// app.use(commentRouter);
-// app.use("/stream", streamRouter);
-// app.use("/ticket", ticketRouter(stream));
-// app.use("/comment", commentRouter(stream));
+app.use(shotRouter);
 
 
 app.listen(port, () => console.log(`Listening on :${port}`));
