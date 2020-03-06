@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const auth = require("../auth/middleware");
 const Shot = require("./model");
+const { imageToData } = require("../extractText");
 
 const router = new Router();
 
@@ -21,10 +22,13 @@ router.post("/shots/new", auth, async (request, response) => {
     "**************** NEW SHOT *****************",
     request.body
   );
-  const { imageUrl, arrayE } = request.body.data;
+  const imageData = await imageToData(req.file);
+  
+
+  const { imageUrl } = request.body.data;
   const userId = request.body.user.id;
 
-  const newShot = { imageUrl, arrayE, userId };
+  const newShot = { imageUrl, arrayE: imageData, userId };
   const shot = await Shot.create(newShot);
   
   return response.status(201).send(shot);
