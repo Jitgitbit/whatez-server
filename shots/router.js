@@ -2,6 +2,19 @@ const { Router } = require("express");
 const auth = require("../auth/middleware");
 const Shot = require("./model");
 const { imageToData } = require("../extractText");
+const multer = require(`multer`);
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req,file,cb) => {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({storage: storage}).single(`file`);
 
 const router = new Router();
 
@@ -17,17 +30,15 @@ router.get("/shots", (request, response, next) => {
 
 
 
-router.post("/shots/new", auth, async (request, response) => {
-  console.log(
-    "**************** NEW SHOT *****************",
-    request.body
-  );
-  const imageData = await imageToData(req.file);
+router.post("/shots/new", upload, async (request, response) => {
+
+  const imageData = await imageToData(request);
   
 
   const { imageUrl } = request.body.data;
   const userId = request.body.user.id;
 
+  // const newShot = { arrayE: imageData, userId };
   const newShot = { imageUrl, arrayE: imageData, userId };
   const shot = await Shot.create(newShot);
   

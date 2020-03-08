@@ -30,7 +30,8 @@ app.get("/", (req, res) => res.render("index"));
 
 app.post("/upload", (req,res) => {
   upload(req,res,err => {
-    console.log(req.file);
+    console.log(req);
+    // console.log(req.file);
     fs.readFile(`./uploads/${req.file.originalname}`, (err, data) => {
       if(err) return console.log(`this is your error:`, err);
 

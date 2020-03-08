@@ -20,37 +20,38 @@ const upload = multer({storage: storage}).single(`avatar`);
 
 
 //ROUTES:
-async function imageToData(image) {
-  const noDuplicates = await upload(image,res,err => {
-    console.log(image);
-    const dataToReturnOne = fs.readFile(`./uploads/${image.originalname}`, (err, data) => {
+async function imageToData(req, res, err) {
+  const noDuplicates = await upload(req,res,err => {
+    console.log(req.file);
+    const dataToReturnOne = fs.readFile(`./uploads/${req.file.originalname}`, async (err, data) => {
       if(err) return console.log(`this is your error:`, err);
-      const dataToReturn = worker
+      const result = await worker.recognize(data, "eng", {tessjs_create_pdf: '1'})
+      // .progress(progress => {
+      //   console.log("====================================================TXT FROM IMG===============================================================");
+      //   console.log(progress);
+      // })
       // .recognize(data, "eng", {tessjs_create_pdf: '1'})
-      .recognize(data, "eng", {tessjs_create_pdf: '1'})
-      .progress(progress => {
-        console.log("====================================================TXT FROM IMG===============================================================");
-        console.log(progress);
-      })
-      .then(result => {
-        console.log("WHAT IS RESULT??", result.text)
-        // res.redirect('/download')
+      
+      
+      console.log("WHAT IS RESULT??", result.text)
+      // res.redirect('/download')
 
-        console.log("================================================== REGEX FROM TXT ==============================================================");
-        const paragraph = result.text;
-        const found = paragraph.match(/[E]\d{3}/gi);
-        console.log(`first extraction attempt:`,found);
+      console.log("================================================== REGEX FROM TXT ==============================================================");
+      const paragraph = result.text;
+      const found = paragraph.match(/[E]\d{3}/gi);
+      console.log(`first extraction attempt:`,found);
 
-        const noDuplicates = [...new Set(found)];
-        console.log(`no duplicates:`,noDuplicates);
-        return noDuplicates
-      })
-      .finally(()=> worker.terminate());
-      return dataToReturn;
+      const theseNoDuplicates = [...new Set(found)];
+      console.log(`first no duplicates:`,theseNoDuplicates);
+
+
+      await worker.terminate();
+      return theseNoDuplicates;
     })
-    console.log({ dataToReturnOne })
+    console.log(`second no duplicates:`,{ dataToReturnOne })
     return dataToReturnOne
   })
+  console.log(`third and last no duplicates:`, noDuplicates)
   return noDuplicates
 }
 
