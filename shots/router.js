@@ -3,6 +3,7 @@ const auth = require("../auth/middleware");
 const Shot = require("./model");
 const { imageToData } = require("../extractText");
 const multer = require(`multer`);
+// const User = require("../users/model");
 
 
 const storage = multer.diskStorage({
@@ -34,8 +35,12 @@ router.post("/shots/new", upload, async (request, response) => {
 
   const imageData = await imageToData(request);
   
+  console.log(`================================> WHAT IS REQUEST.FILE:`, request.file)
+  const { imageUrl } = request.file.filename;
+  // const { imageUrl } = request.body.data;
 
-  const { imageUrl } = request.body.data;
+  console.log(`================================> WHAT IS REQUEST.BODY`, request.user)
+  // console.log(`============================================> USER:`, request)
   const userId = request.body.user.id;
 
   // const newShot = { arrayE: imageData, userId };
