@@ -37,22 +37,18 @@ router.post("/shots/new/" ,upload, async (request, response) => {
   // console.log(`================================> WHAT IS REQUEST.FILE.ORIGINALNAME:`, request.file.originalname)
 
   // console.log(`================================> WHAT IS REQUEST.BODY.USER.USER`, request.body.user.user)
-  // console.log(`================================> WHAT IS REQUEST.BODY.USER.USER`, request.user)
+  
   const auth =
   request.headers.authorization && request.headers.authorization.split(" ");
   let myUSerid = 0
    if (auth && auth[0] === "Bearer" && auth[1]) {
       const data = toData(auth[1]);
-      console.log("++++++++++++++++++++++++++++data", data);
+      console.log("++++++++++++++++++++++++++++>>data", data);
       const myUSer = await User.findByPk(data.id)
       veryGlobal = myUSer.dataValues.id
      
   }
 
-  // const userId = request.body.user.user.id;
-
-  //const userId = request.headers
-  //console.log(`userId before fn`,userId)
 
   const imageData = await imageToData(request);
 
@@ -61,12 +57,6 @@ router.post("/shots/new/" ,upload, async (request, response) => {
 
 
 
-  // const { fileName } = request.file.filename;
-  // const { fileName } = request.body.data;
-
-  // console.log(`================================> WHAT IS THE USERID`,userId)
-
-  // const newShot = { arrayE: imageData, userId };
   const newShot = { fileName: request.file.originalname, arrayE: imageData, userId: veryGlobal};
   const shot = await Shot.create(newShot);
   
