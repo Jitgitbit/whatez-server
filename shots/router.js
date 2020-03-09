@@ -3,7 +3,8 @@ const auth = require("../auth/middleware");
 const Shot = require("./model");
 const { imageToData } = require("../extractText");
 const multer = require(`multer`);
-// const User = require("../users/model");
+const {toData} = require('../auth/jwt')
+const User = require("../users/model");
 
 
 const storage = multer.diskStorage({
@@ -28,23 +29,45 @@ router.get("/shots", (request, response, next) => {
     .catch(error => next(error));
 });
 
+let veryGlobal = 0;
 
 
+router.post("/shots/new/" ,upload, async (request, response) => {
 
-router.post("/shots/new", upload, async (request, response) => {
+  // console.log(`================================> WHAT IS REQUEST.FILE.ORIGINALNAME:`, request.file.originalname)
 
-  console.log(`================================> WHAT IS REQUEST.BODY`, request.user)
+  // console.log(`================================> WHAT IS REQUEST.BODY.USER.USER`, request.body.user.user)
+  // console.log(`================================> WHAT IS REQUEST.BODY.USER.USER`, request.user)
+  const auth =
+  request.headers.authorization && request.headers.authorization.split(" ");
+  let myUSerid = 0
+   if (auth && auth[0] === "Bearer" && auth[1]) {
+      const data = toData(auth[1]);
+      console.log("++++++++++++++++++++++++++++data", data);
+      const myUSer = await User.findByPk(data.id)
+      veryGlobal = myUSer.dataValues.id
+     
+  }
+
+  // const userId = request.body.user.user.id;
+
+  //const userId = request.headers
+  //console.log(`userId before fn`,userId)
+
   const imageData = await imageToData(request);
-  
-  console.log(`================================> WHAT IS REQUEST.FILE:`, request.file)
-  const { fileName } = request.file.filename;
+
+  console.log(`================================> WHAT IS REQUEST.FILE.ORIGINALNAME:`, request.file.originalname)
+  console.log(`=======================>> userId after fn, global and VERY GLOBAL`,  myUSerid, veryGlobal)
+
+
+
+  // const { fileName } = request.file.filename;
   // const { fileName } = request.body.data;
 
-  // console.log(`============================================> USER:`, request)
-  //const userId = request.body.user.id;
+  // console.log(`================================> WHAT IS THE USERID`,userId)
 
   // const newShot = { arrayE: imageData, userId };
-  const newShot = { fileName: request.file.originalname, arrayE: imageData, userId: 1 };
+  const newShot = { fileName: request.file.originalname, arrayE: imageData, userId: veryGlobal};
   const shot = await Shot.create(newShot);
   
   return response.status(201).send(shot);

@@ -14,6 +14,8 @@ function auth(req, res, next) {
           if (!user) return next("User does not exist");
 
           req.user = user;
+          console.log("should happen before anyhing elkse");
+          
           next();
         })
         .catch(next);

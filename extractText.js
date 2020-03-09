@@ -21,7 +21,7 @@ const upload = multer({storage: storage}).single(`avatar`);
 
 //ROUTES:
 async function imageToData(req, res, err) {
-  
+    console.log('req user', req.user)
     console.log('file',req.file);
     const dataToReturnOne = fs.readFileSync(`./uploads/${req.file.originalname}`)
     console.log("WHAT IS data one??", dataToReturnOne)
