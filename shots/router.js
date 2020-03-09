@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const auth = require("../auth/middleware");
+// const auth = require("../auth/middleware");
 const Shot = require("./model");
 const { imageToData } = require("../extractText");
 const multer = require(`multer`);
@@ -37,7 +37,7 @@ router.post("/shots/new/" ,upload, async (request, response) => {
   // console.log(`================================> WHAT IS REQUEST.FILE.ORIGINALNAME:`, request.file.originalname)
 
   // console.log(`================================> WHAT IS REQUEST.BODY.USER.USER`, request.body.user.user)
-  
+
   const auth =
   request.headers.authorization && request.headers.authorization.split(" ");
   let myUSerid = 0

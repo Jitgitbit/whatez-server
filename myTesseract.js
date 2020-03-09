@@ -38,14 +38,13 @@ app.post("/upload", (req,res) => {
       worker
       .recognize(data, "eng", {tessjs_create_pdf: '1'})
       .progress(progress => {
-        console.log("======================================================TXT FROM IMG=====================================================================")
         console.log(progress);
       })
       .then(result => {
         console.log("WHAT IS RESULT??", result.text)
         // res.redirect('/download')
 
-        console.log("======================================================= REGEX FROM TXT ================================================================");
+        console.log("=========================================== REGEX FROM TXT ====================================================");
         const paragraph = result.text;
         const found = paragraph.match(/[E]\d{3}/gi);
         console.log(`first extraction attempt:`,found);
