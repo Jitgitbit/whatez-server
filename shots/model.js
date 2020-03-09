@@ -6,7 +6,7 @@ const Shot = sequelize.define("shot", {
   
   fileName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   arrayE: {
     type: Sequelize.ARRAY(Sequelize.STRING)

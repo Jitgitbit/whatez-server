@@ -26,9 +26,12 @@ async function imageToData(req, res, err) {
     const dataToReturnOne = fs.readFileSync(`./uploads/${req.file.originalname}`)
     console.log("WHAT IS data one??", dataToReturnOne)
     
-      const result = await worker.recognize(dataToReturnOne, "eng", {tessjs_create_pdf: '1'})
+      const result = await worker
+      .recognize(dataToReturnOne, "eng", {tessjs_create_pdf: '1'})
+      .progress(progress => {
+        console.log(progress);
+      })
       console.log("WHAT IS RESULT??", result.text)
-      // res.redirect('/download')
 
       console.log("================================================== REGEX FROM TXT ==============================================================");
       const paragraph = result.text;
@@ -36,7 +39,7 @@ async function imageToData(req, res, err) {
       console.log(`first extraction attempt:`,found);
 
       const theseNoDuplicates = [...new Set(found)];
-      console.log(`first no duplicates:`,theseNoDuplicates);
+      console.log(`=============>> WHAT WE NEED:`,theseNoDuplicates);
 
 
       await worker.terminate();
