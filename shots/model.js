@@ -4,7 +4,7 @@ const User = require("../users/model");
 
 const Shot = sequelize.define("shot", {
   
-  imageUrl: {
+  fileName: {
     type: Sequelize.STRING,
     allowNull: false
   },
