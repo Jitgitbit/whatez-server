@@ -21,17 +21,20 @@ const upload = multer({storage: storage}).single(`avatar`);
 
 //ROUTES:
 async function imageToData(req, res, err) {
-  
-    console.log('file',req.file);
-    const dataToReturnOne = fs.readFileSync(`./uploads/${req.file.originalname}`)
-    console.log("WHAT IS data one??", dataToReturnOne)
-    
-      const result = await worker
-      .recognize(dataToReturnOne, "eng", {tessjs_create_pdf: '1'})
-      .progress(progress => {
-        console.log(progress);
-      })
+  const noDuplicates = await upload(req,res,err => {
+    console.log(req.file);
+    const dataToReturnOne = fs.readFile(`./uploads/${req.file.originalname}`, async (err, data) => {
+      if(err) return console.log(`this is your error:`, err);
+      const result = await worker.recognize(data, "eng", {tessjs_create_pdf: '1'})
+      // .progress(progress => {
+      //   console.log("====================================================TXT FROM IMG===============================================================");
+      //   console.log(progress);
+      // })
+      // .recognize(data, "eng", {tessjs_create_pdf: '1'})
+      
+      
       console.log("WHAT IS RESULT??", result.text)
+      // res.redirect('/download')
 
       console.log("================================================== REGEX FROM TXT ==============================================================");
       const paragraph = result.text;
@@ -39,15 +42,17 @@ async function imageToData(req, res, err) {
       console.log(`first extraction attempt:`,found);
 
       const theseNoDuplicates = [...new Set(found)];
-      console.log(`=============>> WHAT WE NEED:`,theseNoDuplicates);
+      console.log(`first no duplicates:`,theseNoDuplicates);
 
 
       await worker.terminate();
       return theseNoDuplicates;
-    
-    
-  }
-  
-
+    })
+    console.log(`second no duplicates:`,{ dataToReturnOne })
+    return dataToReturnOne
+  })
+  console.log(`third and last no duplicates:`, noDuplicates)
+  return noDuplicates
+}
 
 module.exports.imageToData = imageToData;
