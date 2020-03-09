@@ -33,18 +33,18 @@ router.get("/shots", (request, response, next) => {
 
 router.post("/shots/new", upload, async (request, response) => {
 
+  console.log(`================================> WHAT IS REQUEST.BODY`, request.user)
   const imageData = await imageToData(request);
   
   console.log(`================================> WHAT IS REQUEST.FILE:`, request.file)
   const { imageUrl } = request.file.filename;
   // const { imageUrl } = request.body.data;
 
-  console.log(`================================> WHAT IS REQUEST.BODY`, request.user)
   // console.log(`============================================> USER:`, request)
-  const userId = request.body.user.id;
+  //const userId = request.body.user.id;
 
   // const newShot = { arrayE: imageData, userId };
-  const newShot = { imageUrl, arrayE: imageData, userId };
+  const newShot = { imageUrl: request.file.originalname, arrayE: imageData, userId: 1 };
   const shot = await Shot.create(newShot);
   
   return response.status(201).send(shot);
