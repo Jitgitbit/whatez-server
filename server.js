@@ -6,7 +6,7 @@ const auth = require("./auth/middleware");
 const userRouter = require("./users/router");
 const authRouter = require("./auth/router");
 const shotRouter = require("./shots/router");
-
+const additiveRouter = require("./additives/router");
 
 
 const app = express();
@@ -24,6 +24,7 @@ app.get("/ping", (request, response) => {
 app.use(userRouter);
 app.use(authRouter);
 app.use(shotRouter);
+app.use(additiveRouter);
 
 
 app.listen(port, () => console.log(`Listening on :${port}`));
