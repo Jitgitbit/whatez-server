@@ -59,6 +59,8 @@ router.post("/shots/new/" ,upload, async (request, response) => {
 
   const newShot = { fileName: request.file.originalname, arrayE: imageData, userId: veryGlobal};
   const shot = await Shot.create(newShot);
+
+  // console.log(`THIS IS THE:`, shot)
   
   return response.status(201).send(shot);
 });
