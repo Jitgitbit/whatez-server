@@ -9,6 +9,7 @@ const Additive = db.define("additive", {
   additiveName: Sequelize.STRING
   
 });
+
 Additive.belongsTo(Shot);
 Additive.belongsTo(User);
 User.hasMany(Additive);
