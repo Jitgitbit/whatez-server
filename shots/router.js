@@ -51,7 +51,7 @@ router.post("/shots/new/", upload, async (request, response) => {
 
   console.log("request file: ", request.file);
 
-  const imageData = await imageToData(req.file.originalname);
+  const imageData = await imageToData(request.file.originalname);
 
   console.log(
     `================================> WHAT IS REQUEST.FILE.ORIGINALNAME:`,
