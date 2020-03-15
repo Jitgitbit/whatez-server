@@ -8,11 +8,8 @@ const authRouter = require("./auth/router");
 const shotRouter = require("./shots/router");
 const additiveRouter = require("./additives/router");
 
-
 const app = express();
 const port = process.env.PORT || 5000;
-
-
 
 const corsMiddleware = cors();
 app.use(corsMiddleware, express.json());
@@ -25,6 +22,5 @@ app.use(userRouter);
 app.use(authRouter);
 app.use(shotRouter);
 app.use(additiveRouter);
-
 
 app.listen(port, () => console.log(`Listening on :${port}`));
