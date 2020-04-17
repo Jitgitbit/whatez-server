@@ -71,7 +71,7 @@ router.post("/shots/new/", upload, async (request, response) => {
   const shot = await Shot.create(newShot);
 
   // console.log(`THIS IS THE:`, shot)
-  console.log("DONE!!", shot);
+  console.log("===============>>> DONE!! THIS IS THE SHOT:", shot);
   response.status(201).json(shot);
 });
 
