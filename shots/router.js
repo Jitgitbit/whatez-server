@@ -21,10 +21,8 @@ const upload = multer({ storage: storage }).single(`file`);
 const router = new Router();
 
 router.get("/shots", (request, response, next) => {
-  // const limit = Math.min(request.query.limit || 9, 500)
-  // const offset = request.query.offset || 0
 
-  Shot.findAll() //{ limit, offset }
+  Shot.findAll() 
     .then(shots => response.json(shots))
     .catch(error => next(error));
 });

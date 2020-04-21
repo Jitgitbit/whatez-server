@@ -1,11 +1,11 @@
 const { Router } = require("express");
-
-// const cors = require("cors");
-// const corsMiddleware = cors();
-
 const axios = require("axios");
 
-axios({
+const router = new Router();
+
+router.get("/categories", (request, response, next) => {
+  
+  axios({
     "method":"GET",
     "url":"https://vx-e-additives.p.rapidapi.com/categories",
     "headers":{
@@ -22,3 +22,6 @@ axios({
     .catch((error)=>{
       console.log(error)
     })
+});
+
+module.exports = router;

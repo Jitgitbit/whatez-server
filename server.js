@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-// const Sse = require("json-sse");
 const auth = require("./auth/middleware");
 
 const userRouter = require("./users/router");
 const authRouter = require("./auth/router");
 const shotRouter = require("./shots/router");
 const additiveRouter = require("./additives/router");
+const restRouter = require("./rest/router");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,5 +22,6 @@ app.use(userRouter);
 app.use(authRouter);
 app.use(shotRouter);
 app.use(additiveRouter);
+app.use(restRouter);
 
 app.listen(port, () => console.log(`Listening on :${port}`));
