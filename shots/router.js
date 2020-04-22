@@ -1,5 +1,4 @@
 const { Router } = require("express");
-
 // const auth = require("../auth/middleware");
 const Shot = require("./model");
 const { imageToData } = require("../extractText");
@@ -68,7 +67,6 @@ router.post("/shots/new/", upload, async (request, response) => {
   };
   const shot = await Shot.create(newShot);
 
-  // console.log(`THIS IS THE:`, shot)
   console.log("===============>>> DONE!! THIS IS THE SHOT:", shot);
   response.status(201).json(shot);
 });
