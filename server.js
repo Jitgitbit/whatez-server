@@ -6,7 +6,7 @@ const userRouter = require("./users/router");
 const authRouter = require("./auth/router");
 const shotRouter = require("./shots/router");
 const additiveRouter = require("./additives/router");
-const restRouter = require("./rest/router");
+const restApiRouter = require("./restAPI/router");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,6 +22,6 @@ app.use(userRouter);
 app.use(authRouter);
 app.use(shotRouter);
 app.use(additiveRouter);
-app.use(restRouter);
+app.use(restApiRouter);
 
 app.listen(port, () => console.log(`Listening on :${port}`));
