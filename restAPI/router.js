@@ -18,13 +18,12 @@ router.get("/categories", async (req, res) => {
       }
     }
   );
-  console.log("==============================>>> response.data @categories router", response.data);
+  // console.log("==============================>>> response.data @categories router", response.data);
   res.send(response.data);
 });
 
 router.get("/categories/:id", async (req, res) => {
-  console.log("=====================>>>  req.params @category router", req.params);
-
+  // console.log("=====================>>>  req.params @category router", req.params);
   let specificId = req.params.id
 
   const response = await axios(
