@@ -10,7 +10,7 @@ const Shot = require("../shots/model")
 
 const router = new Router();
 
-router.get("/additives", (request, response, next) => {
+router.get("/additivesnot", (request, response, next) => {
 
   Additive.findAll()   
     .then(additives => response.json(additives))
@@ -18,21 +18,5 @@ router.get("/additives", (request, response, next) => {
     .catch(error => next(error));
 });
 
-// router.post("/additives/new", (request, response, next) => {
-//   // console.log("SHOT REQUEST DATA", request.body);
-//   // const { additiveName } = request.body;
-//   router.get("/shots", (request, response, next) => {
-
-//     Shot.findAll()   
-//       .then(shots => response.json(shots))
-//       console.log(shots)
-//       .catch(error => next(error));
-//   });
-//   Additive.create({
-//     additiveName: additiveName,
-//   })
-//     .then(additive => response.send(additive))
-//     .catch(error => next(error));
-// });
 
 module.exports = router;
