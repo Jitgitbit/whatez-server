@@ -1,16 +1,47 @@
 # whatez-server
 Backend health-app.
 
+Very short demo video:
 https://www.loom.com/share/950a0bd8728449b3b44a4e99c95925d5
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 42 56" src="https://user-images.githubusercontent.com/51092100/79442145-7329bc80-7fd8-11ea-9f16-03fb0520a9bf.png">
+Some quick screenshots:
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 43 09" src="https://user-images.githubusercontent.com/51092100/79442412-cc91eb80-7fd8-11ea-9ebe-b88c7f26e0d3.png">
+![image](https://user-images.githubusercontent.com/51092100/80215448-be794600-863c-11ea-9e2f-ab6f738975f0.png)
+![image](https://user-images.githubusercontent.com/51092100/80215473-cd5ff880-863c-11ea-94c0-4cde02783aa8.png)
+![image](https://user-images.githubusercontent.com/51092100/80215507-da7ce780-863c-11ea-88b9-190f1c129c06.png)
+![image](https://user-images.githubusercontent.com/51092100/80215520-e2d52280-863c-11ea-85a3-27e6df57fae0.png)
+![image](https://user-images.githubusercontent.com/51092100/80215532-e8326d00-863c-11ea-88c8-278ec555b4bc.png)
+![image](https://user-images.githubusercontent.com/51092100/80215541-ef597b00-863c-11ea-9182-7e4d83ec1afe.png)
+![image](https://user-images.githubusercontent.com/51092100/80215565-f8e2e300-863c-11ea-992a-b56c1ef77adc.png)
+![image](https://user-images.githubusercontent.com/51092100/80215572-fed8c400-863c-11ea-9e79-64435663f1e4.png)
+![image](https://user-images.githubusercontent.com/51092100/80215596-0b5d1c80-863d-11ea-8b77-61d9e409e2be.png)
+![image](https://user-images.githubusercontent.com/51092100/80215613-12842a80-863d-11ea-9c4b-95499095a6e0.png)
+![image](https://user-images.githubusercontent.com/51092100/80215630-1a43cf00-863d-11ea-808c-5b7f7e8c0cfe.png)
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 43 27" src="https://user-images.githubusercontent.com/51092100/79442544-f8ad6c80-7fd8-11ea-9846-6dfcc6333029.png">
+Technologies used:
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 43 36" src="https://user-images.githubusercontent.com/51092100/79442630-1c70b280-7fd9-11ea-8ea0-44f104093c78.png">
+Client-side:
+https://github.com/Jitgitbit/whatez-client
+- JavaScript
+- React.js
+- Redux
+- Axios
+- Recharts
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 43 50" src="https://user-images.githubusercontent.com/51092100/79442769-44f8ac80-7fd9-11ea-8418-49b72abf4904.png">
+Server-side:
+- JavaScript
+- Node.js
+- Sequelize
+- Express
+- Tesseract.js
+- Multer
+- JSONwebtoken
+- bcrypt
+- regex
+- ejs
+- fs
+- PostgresQL
 
-<img width="1792" alt="Screenshot 2020-04-16 at 11 44 00" src="https://user-images.githubusercontent.com/51092100/79442900-6e193d00-7fd9-11ea-92b6-2344318af352.png">
+Some more info:
+I explained most about the app in the video, which is slightly outdated now, as v1.0 of my app is now completely finished.
+The next step will be developing a mobile version for the client-side and deploying it. 
