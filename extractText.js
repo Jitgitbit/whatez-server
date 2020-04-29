@@ -37,11 +37,11 @@ async function imageToData(fileName) {
     "================================================== REGEX FROM TXT =============================================================="
   );
   const paragraph = result.text;
-  const found = paragraph.match(/[E]\d{3}/gi);
+  const found = paragraph.match(/[eE]\d{3,4}|[eE]\d{3,4}[a-z]|[eE]\d{3,4}[a-z]{2}/g);
   console.log(`first extraction attempt:`, found);
 
   const theseNoDuplicates = [...new Set(found)];
-  console.log(`=============>> WHAT WE NEED:`, theseNoDuplicates);
+  console.log(`=============>> WHAT WE NEED, NO DUPLICATES:`, theseNoDuplicates);
 
   await worker.terminate();
   return theseNoDuplicates;
