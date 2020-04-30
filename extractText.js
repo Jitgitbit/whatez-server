@@ -38,7 +38,7 @@ async function imageToData(fileName) {
   );
   const paragraph = result.text;
   // const found = paragraph.match(/[eE]\d{3,4}|[eE]\d{3,4}[a-z]|[eE]\d{3,4}[a-z]{2}/g);
-  const found = paragraph.match(/[E]\d{3,4}[a-z]?/g);
+  const found = paragraph.match(/([E]\d{3,4})([a-z])?/g);
   console.log(`first extraction attempt:`, found);
 
   const theseNoDuplicates = [...new Set(found)];
