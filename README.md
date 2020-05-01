@@ -19,7 +19,6 @@ Some quick screenshots:
 ![image](https://user-images.githubusercontent.com/51092100/80215630-1a43cf00-863d-11ea-808c-5b7f7e8c0cfe.png)
 ![image](https://user-images.githubusercontent.com/51092100/80223848-233a9d80-8649-11ea-9a88-e71b65af26d1.png)
 
-Technologies used:
 
 Client-side:
 https://github.com/Jitgitbit/whatez-client
